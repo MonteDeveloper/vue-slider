@@ -5,7 +5,8 @@ createApp({
         return {
             sliderInfo: {
                 current: 1,
-                total: 5
+                total: 5,
+                myInterval: undefined
             },
             slides: [
                 {
@@ -32,6 +33,9 @@ createApp({
                 ]
         }
     },
+    mounted() {
+        this.playSlider();
+    },
     methods: {
         changeSlide(step){
             this.sliderInfo.current += step;
@@ -45,6 +49,17 @@ createApp({
         },
         setThisSlideActive(newCurrentSlide){
             this.sliderInfo.current = newCurrentSlide;
+        },
+        playSlider(){
+            this.stopSlider();
+            this.sliderInfo.myInterval = setInterval(() => {
+                this.changeSlide(+1);
+            }, 1000 * 3);
+        },
+        stopSlider(){
+            if(this.sliderInfo.myInterval){
+                clearInterval(this.sliderInfo.myInterval);
+            }
         }
     }
 }).mount('#app')
