@@ -42,6 +42,9 @@ createApp({
             } else if (this.sliderInfo.current < startingSlide) {
                 this.sliderInfo.current = this.sliderInfo.total;
             }
+        },
+        setThisSlideActive(newCurrentSlide){
+            this.sliderInfo.current = newCurrentSlide;
         }
     }
 }).mount('#app')
